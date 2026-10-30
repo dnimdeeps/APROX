@@ -1,0 +1,1548 @@
+{
+  "contractAddress": "0xe64ff7b3c346bd727d5291cf3198c7e4c3a51c89",
+  "network": "ARC-TESTNET",
+  "deployerWalletId": "3c2464b2-8369-52e2-a782-800bbeca5396",
+  "contract_code_path": "/home/user/app/contracts/AproxPerpV7.sol",
+  "contract_compiled_code_path": "/home/user/app/contracts/out/AproxPerpV7.sol/AproxPerpV7.json",
+  "contract_network_and_links": {
+    "Arc Testnet": "https://explorer.testnet.arc.io/address/0xe64ff7b3c346bd727d5291cf3198c7e4c3a51c89"
+  },
+  "contract_deployments": [
+    {
+      "chain": "Arc Testnet",
+      "address": "0xe64ff7b3c346bd727d5291cf3198c7e4c3a51c89",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0xe64ff7b3c346bd727d5291cf3198c7e4c3a51c89",
+      "txHash": "0x89283443e719a921d728c87d22ccbe28df4aff0724faee29019142117ac980a6",
+      "deployedAt": "2026-10-28T02:33:11.075Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0x205465ccabd362f52763d27f20e05e7b68dcef0d",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x205465ccabd362f52763d27f20e05e7b68dcef0d",
+      "txHash": "0xe5463192c913b105f4764639dedc13272f5165000308f39a8d4e598d59fae8fb",
+      "deployedAt": "2026-10-28T00:37:50.688Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0x4c107d236f7607c47f15f08b63b6cec263951564",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x4c107d236f7607c47f15f08b63b6cec263951564",
+      "txHash": "0x84e5d802bef26e3673f92b082594ffbfe677e602e8af54909e09ff03ebe69187",
+      "deployedAt": "2026-10-25T22:34:33.492Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0x555df071315d3992a36000549aa975fbc10801b3",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x555df071315d3992a36000549aa975fbc10801b3",
+      "txHash": "0xeb6ed5638aa686c0c3668f83cf5d79b37715ccf642a9259389eb529edf7dca47",
+      "deployedAt": "2026-10-25T05:09:27.850Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0x6bde88771951062eca0c66782880c5966951f72f",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x6bde88771951062eca0c66782880c5966951f72f",
+      "txHash": "0xf68255e12fd303832e40e276a3223c68f3e7f40ead7eb64e64098252588090b7",
+      "deployedAt": "2026-10-25T04:05:48.314Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0xd083d4d4f563868795dbce3c20af8840efadc081",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0xd083d4d4f563868795dbce3c20af8840efadc081",
+      "txHash": "0x33f51fc049e3d92d82aafad22a7f5dececfa5a3ca1eb5aa9a4b813657c13a6a3",
+      "deployedAt": "2026-10-25T03:39:13.111Z"
+    }
+  ],
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "_usdc",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "_owner",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "_feeRecipient",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "_btcFeed",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "_ethFeed",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "_solFeed",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "_maxOracleStaleness",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "KEEPER_REWARD_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "LIQUIDATION_THRESHOLD_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "MAX_LEVERAGE",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "MAX_ORACLE_STALENESS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "MIN_LEVERAGE",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "PAIR_BTC_USD",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "PAIR_ETH_USD",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "PAIR_SOL_USD",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "PRICE_UNIT",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "int256",
+          "internalType": "int256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "bestStreak",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "cancelOrder",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "closeOrder",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "computeLivePnl",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pnl",
+          "type": "int256",
+          "internalType": "int256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "deposit",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "feeRecipient",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "freeBalance",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getFreeBalance",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getMarketDepth",
+      "inputs": [
+        {
+          "name": "leverage",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "pairId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pendingLong",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "pendingShort",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getOrder",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct AproxPerpV7.Order",
+          "components": [
+            {
+              "name": "trader",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "isLong",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "leverage",
+              "type": "uint8",
+              "internalType": "uint8"
+            },
+            {
+              "name": "collateral",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "matchedCollateral",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "pendingCollateral",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "entryPrice",
+              "type": "int256",
+              "internalType": "int256"
+            },
+            {
+              "name": "matchedAt",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "openedAt",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "pairId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "status",
+              "type": "uint8",
+              "internalType": "enum AproxPerpV7.OrderStatus"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getOrderPairs",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getPair",
+      "inputs": [
+        {
+          "name": "pairId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct AproxPerpV7.MatchedPair",
+          "components": [
+            {
+              "name": "longOrderId",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "shortOrderId",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "lockedCollateral",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "longEntryPrice",
+              "type": "int256",
+              "internalType": "int256"
+            },
+            {
+              "name": "shortEntryPrice",
+              "type": "int256",
+              "internalType": "int256"
+            },
+            {
+              "name": "settled",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getPendingQueue",
+      "inputs": [
+        {
+          "name": "isLong",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "leverage",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "pairId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getPendingQueueLength",
+      "inputs": [
+        {
+          "name": "isLong",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "leverage",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "pairId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getPriceFeed",
+      "inputs": [
+        {
+          "name": "pairId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getStats",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct AproxPerpV7.TraderStats",
+          "components": [
+            {
+              "name": "totalMatches",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "totalWins",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "totalLosses",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "totalVolume",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "winStreak",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "bestStreak",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "liquidate",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "nextOrderId",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "nextPairId",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "openOrder",
+      "inputs": [
+        {
+          "name": "isLong",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "leverage",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "collateral",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "pairId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "orderPairs",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "orders",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "isLong",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "leverage",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "collateral",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "matchedCollateral",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "pendingCollateral",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "entryPrice",
+          "type": "int256",
+          "internalType": "int256"
+        },
+        {
+          "name": "matchedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "openedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "pairId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "status",
+          "type": "uint8",
+          "internalType": "enum AproxPerpV7.OrderStatus"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "pairs",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "longOrderId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "shortOrderId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "lockedCollateral",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "longEntryPrice",
+          "type": "int256",
+          "internalType": "int256"
+        },
+        {
+          "name": "shortEntryPrice",
+          "type": "int256",
+          "internalType": "int256"
+        },
+        {
+          "name": "settled",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "priceFeeds",
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "send",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setFeeRecipient",
+      "inputs": [
+        {
+          "name": "newRecipient",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setPriceFeed",
+      "inputs": [
+        {
+          "name": "pairId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "feed",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "totalLosses",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "totalMatches",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "totalVolume",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "totalWins",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "usdc",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "winStreak",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "withdraw",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "event",
+      "name": "Deposited",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "FeeRecipientSet",
+      "inputs": [
+        {
+          "name": "oldRecipient",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newRecipient",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Liquidated",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "keeper",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "keeperReward",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "LiquidationReMatched",
+      "inputs": [
+        {
+          "name": "liquidatedOrderId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "survivingOrderId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "newPairId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "newLockedCollateral",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "newEntryPrice",
+          "type": "int256",
+          "indexed": false,
+          "internalType": "int256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OrderCancelled",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "refund",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OrderClosed",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "pnl",
+          "type": "int256",
+          "indexed": false,
+          "internalType": "int256"
+        },
+        {
+          "name": "payout",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OrderMatched",
+      "inputs": [
+        {
+          "name": "pairId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "longOrderId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "shortOrderId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "lockedCollateral",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "price",
+          "type": "int256",
+          "indexed": false,
+          "internalType": "int256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OrderOpened",
+      "inputs": [
+        {
+          "name": "orderId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "isLong",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        },
+        {
+          "name": "leverage",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "uint8"
+        },
+        {
+          "name": "collateral",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "name": "oldOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "PositionTransferred",
+      "inputs": [
+        {
+          "name": "oldPairId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "newPairId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "survivingOrderId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "survivingTrader",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        },
+        {
+          "name": "newEntryPrice",
+          "type": "int256",
+          "indexed": false,
+          "internalType": "int256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "PriceFeedSet",
+      "inputs": [
+        {
+          "name": "pairId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "feed",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Sent",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "StatsUpdated",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "totalWins",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "totalLosses",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "winStreak",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "bestStreak",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Withdrawn",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "InsufficientFreeBalance",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidLeverage",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidPair",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidPrice",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "NotOwner",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "NotTrader",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "NothingToLiquidate",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "OrderNotActive",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "OrderNotPending",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "PositionHealthy",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "ReentrancyGuardReentrantCall",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "SafeERC20FailedOperation",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "StalePrice",
+      "inputs": [
+        {
+          "name": "updatedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "blockTimestamp",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ZeroAddress",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "ZeroAmount",
+      "inputs": []
+    }
+  ]
+}

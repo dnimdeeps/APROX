@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: aprox-operator-server
+    runtime: image
+    # Render's native Bun runtime — no Docker needed.
+    # Render auto-detects bun from bun.lock; we just specify the start command.
+    startCommand: bun run index.ts
+    healthCheckPath: /health
+    # Free tier: 512 MB RAM, sleeps after 15 min inactivity (upgrade to Starter
+    # for always-on). This server pushes prices on-chain every 5s — a cold start
+    # will cause stale-price reverts until the first push lands (~30s).
+    plan: free
+    envVars:
+      - key: PORT
+        value: "3001"
+      - key: NODE_ENV
+        value: production
+      # Set these in the Render dashboard (Environment tab), not here:
+      #   NETWORK                  testnet | mainnet
+      #   OPERATOR_PRIVATE_KEY     0x…
+      #   OPERATOR_GATEWAY_ADDRESS 0x…
+      #   BUYER_PRIVATE_KEY        0x…  (optional — mainnet real payments only)

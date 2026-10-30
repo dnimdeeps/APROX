@@ -1,0 +1,336 @@
+{
+  "contractAddress": "0x0d73f81fc983bf44ed6a65a57e9818ecf57d9cce",
+  "network": "ARC-TESTNET",
+  "deployerWalletId": "3c2464b2-8369-52e2-a782-800bbeca5396",
+  "contract_code_path": "/home/user/app/contracts/OperatorPriceFeed.sol",
+  "contract_compiled_code_path": "/home/user/app/contracts/out/OperatorPriceFeed.sol/OperatorPriceFeed.json",
+  "contract_network_and_links": {
+    "Arc Testnet": "https://explorer.testnet.arc.io/address/0x0d73f81fc983bf44ed6a65a57e9818ecf57d9cce"
+  },
+  "contract_deployments": [
+    {
+      "chain": "Arc Testnet",
+      "address": "0x0d73f81fc983bf44ed6a65a57e9818ecf57d9cce",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x0d73f81fc983bf44ed6a65a57e9818ecf57d9cce",
+      "txHash": "0x13ce0e7a13fb09b0d9cedb445db96041b1fab6408d97ec22870aaffdae7278fb",
+      "deployedAt": "2026-10-25T05:08:47.002Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0x0d73f81fc983bf44ed6a65a57e9818ecf57d9cce",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x0d73f81fc983bf44ed6a65a57e9818ecf57d9cce",
+      "txHash": "0x13ce0e7a13fb09b0d9cedb445db96041b1fab6408d97ec22870aaffdae7278fb",
+      "deployedAt": "2026-10-25T04:05:40.798Z"
+    },
+    {
+      "chain": "Arc Testnet",
+      "address": "0xca187cd7846ad01580448cd21486c06886f1b293",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0xca187cd7846ad01580448cd21486c06886f1b293",
+      "txHash": "0x524cdaa266bd713c0a7a7102870bbafac803ee3b9e09560d8741e4809cc5d8fb",
+      "deployedAt": "2026-10-25T03:39:02.848Z"
+    }
+  ],
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "_operator",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "DECIMALS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "DESCRIPTION",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "decimals",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "pure"
+    },
+    {
+      "type": "function",
+      "name": "description",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "pure"
+    },
+    {
+      "type": "function",
+      "name": "getRoundData",
+      "inputs": [
+        {
+          "name": "rid",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        },
+        {
+          "name": "answer",
+          "type": "int256",
+          "internalType": "int256"
+        },
+        {
+          "name": "startedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "updatedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "answeredInRound",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "latestRoundData",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        },
+        {
+          "name": "answer",
+          "type": "int256",
+          "internalType": "int256"
+        },
+        {
+          "name": "startedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "updatedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "answeredInRound",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "operator",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "setOperator",
+      "inputs": [
+        {
+          "name": "newOperator",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "updateAnswer",
+      "inputs": [
+        {
+          "name": "price",
+          "type": "int256",
+          "internalType": "int256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "version",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "pure"
+    },
+    {
+      "type": "event",
+      "name": "AnswerUpdated",
+      "inputs": [
+        {
+          "name": "current",
+          "type": "int256",
+          "indexed": true,
+          "internalType": "int256"
+        },
+        {
+          "name": "roundId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "updatedAt",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OperatorSet",
+      "inputs": [
+        {
+          "name": "oldOperator",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOperator",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "name": "oldOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "InvalidPrice",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "NotOperator",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "NotOwner",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "ZeroAddress",
+      "inputs": []
+    }
+  ]
+}

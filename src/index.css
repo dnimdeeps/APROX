@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Aprox — Duel Protocol */
+:root {
+  --bg: #0a1628;
+  --bg-gradient: linear-gradient(180deg, #0a1628 0%, #0c1d34 100%);
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-strong: rgba(255, 255, 255, 0.09);
+  --surface-muted: #1a2a3e;
+  --ink: #f0f4f8;
+  --ink-2: #d8e4f0;
+  --muted: #8ca0b8;
+  --subtle: #4a6080;
+  --border: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(200, 216, 240, 0.45);
+  --accent: #c8d8f0;
+  --accent-hover: #dce8f8;
+  --success: #00e676;
+  --danger: #ff3d57;
+  /* Bar layer colors */
+  --bar-stake: #1a6b3c;
+  --bar-profit: #00c853;
+  --bar-rematched: #69f0ae;
+  --bar-opponent: #8b1a2a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--ink);
+  min-height: 100dvh;
+}
+
+.display {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', Menlo, monospace;
+}
