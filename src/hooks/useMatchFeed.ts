@@ -9,9 +9,12 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { publicClient } from './useModularWallet'
+import { IS_MAINNET } from '@/network'
 import type { Hex } from 'viem'
 
-const PERP_ADDRESS = (import.meta.env.VITE_APROX_PERP_ADDRESS ?? '') as Hex
+const PERP_ADDRESS = (IS_MAINNET
+  ? (import.meta.env.VITE_MAINNET_APROX_PERP_ADDRESS ?? '')
+  : (import.meta.env.VITE_APROX_PERP_ADDRESS ?? '')) as Hex
 const POLL_INTERVAL_MS = 15_000
 const LOOKBACK_BLOCKS  = 5_000n
 const OPENED_LOOKBACK  = 50_000n

@@ -8,7 +8,10 @@
 
 import { useMatchFeed } from '@/hooks/useMatchFeed'
 import type { FeedEvent } from '@/hooks/useMatchFeed'
+import { IS_MAINNET } from '@/network'
 import { Zap, TrendingDown, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
+
+const EXPLORER = IS_MAINNET ? 'https://explorer.arc.io' : 'https://explorer.testnet.arc.io'
 
 function shortAddr(addr: string) {
   return `${addr.slice(0, 6)}…${addr.slice(-4)}`
@@ -33,7 +36,7 @@ function timeAgo(blockNumber: bigint, headBlock: bigint): string {
 }
 
 function EventRow({ ev, headBlock }: { ev: FeedEvent; headBlock: bigint }) {
-  const txUrl = `https://explorer.testnet.arc.io/tx/${ev.txHash}`
+  const txUrl = `${EXPLORER}/tx/${ev.txHash}`
   const time  = timeAgo(ev.blockNumber, headBlock)
 
   const isLiq = ev.type === 'liquidated'

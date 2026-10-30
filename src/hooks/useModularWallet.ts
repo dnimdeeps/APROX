@@ -81,9 +81,10 @@ export function useModularWallet(): UseModularWalletReturn {
   const [account, setAccount] = useState<SmartAccount | null>(null)
   const [address, setAddress] = useState<string | null>(null)
   // Initialise from localStorage so username survives tab close and browser restart
-  const [username, setUsername] = useState<string | null>(
-    () => storage.getItem(USERNAME_STORAGE_KEY) ?? null
-  )
+  const [username, setUsername] = useState<string | null>(() => {
+    const v = storage.getItem(USERNAME_STORAGE_KEY)
+    return v && v !== 'null' && v !== 'undefined' ? v : null
+  })
   const [status, setStatus] = useState<WalletStatus>('idle')
   const [error, setError] = useState<string | null>(null)
 
@@ -211,10 +212,10 @@ export function useModularWallet(): UseModularWalletReturn {
       // 2. address → username mapping (survives if #1 cleared)
       // 3. credential object (some Circle SDK versions return username on login)
       const addrKey = `aprox_username_${smartAccount.address.toLowerCase()}`
-      const savedUsername = storage.getItem(USERNAME_STORAGE_KEY)
-        ?? storage.getItem(addrKey)
-        ?? (credential as { username?: string }).username
-        ?? null
+      const clean = (v: string | null | undefined) => (v && v !== 'null' && v !== 'undefined' ? v : null)
+      const savedUsername = clean(storage.getItem(USERNAME_STORAGE_KEY))
+        ?? clean(storage.getItem(addrKey))
+        ?? clean((credential as { username?: string }).username)
       if (savedUsername) {
         setUsername(savedUsername)
         storage.setItem(USERNAME_STORAGE_KEY, savedUsername)
