@@ -361,89 +361,148 @@ interface MarketDepthDashboardProps {
 }
 
 function MarketDepthDashboard({ selectedPair }: MarketDepthDashboardProps) {
-  // allRows holds one entry per leverage tier — always all tiers, zero shown as —
-  const [allRows, setAllRows] = useState<DepthRow[]>(
-    ALL_LEVERAGES.map(lev => ({ leverage: lev, pendingLong: 0, pendingShort: 0 }))
-  )
+  const [open, setOpen] = useState(false)
+  const [rows, setRows] = useState<DepthRow[]>([])
   const [loading, setLoading] = useState(false)
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [scanProgress, setScanProgress] = useState(0)
+  const [lastFetched, setLastFetched] = useState<Hex | null>(null)
 
   const fetchDepth = useCallback(async () => {
-    if (!PERP_ADDRESS_FOR_DEPTH) return
     setLoading(true)
+    setScanProgress(0)
+    const found: DepthRow[] = []
     try {
       const calls = ALL_LEVERAGES.map(lev => ({
         target: PERP_ADDRESS_FOR_DEPTH,
         allowFailure: true,
         callData: encodeFunctionDataForDepth(lev, selectedPair),
       }))
+      setScanProgress(50)
       const results = await publicClient.readContract({
         address: MULTICALL3_ADDRESS_FOR_DEPTH,
         abi: MULTICALL3_ABI_FOR_DEPTH,
         functionName: 'aggregate3',
         args: [calls],
       }) as Array<{ success: boolean; returnData: Hex }>
-
-      const updated = ALL_LEVERAGES.map((lev, i) => {
-        const { success, returnData } = results[i] ?? { success: false, returnData: '0x' }
-        if (!success || !returnData || returnData === '0x') return { leverage: lev, pendingLong: 0, pendingShort: 0 }
+      setScanProgress(90)
+      for (let i = 0; i < results.length; i++) {
+        const { success, returnData } = results[i]
+        if (!success || !returnData || returnData === '0x') continue
         try {
           const decoded = decodeDepthResult(returnData)
-          return { leverage: lev, pendingLong: Number(decoded[0]) / 1e6, pendingShort: Number(decoded[1]) / 1e6 }
-        } catch { return { leverage: lev, pendingLong: 0, pendingShort: 0 } }
-      })
-      setAllRows(updated)
+          const pendingLong  = Number(decoded[0]) / 1e6
+          const pendingShort = Number(decoded[1]) / 1e6
+          if (pendingLong > 0 || pendingShort > 0) {
+            found.push({ leverage: ALL_LEVERAGES[i], pendingLong, pendingShort })
+          }
+        } catch { continue }
+      }
+      setRows([...found])
+      setLastFetched(selectedPair)
+      setScanProgress(100)
     } finally {
       setLoading(false)
+      setScanProgress(0)
     }
   }, [selectedPair])
 
-  // Fetch on mount and every 30s; re-fetch when pair changes
   useEffect(() => {
-    void fetchDepth()
-    timerRef.current = setInterval(() => void fetchDepth(), 30_000)
-    return () => { if (timerRef.current) clearInterval(timerRef.current) }
-  }, [fetchDepth])
+    if (open && lastFetched !== selectedPair) void fetchDepth()
+  }, [open, lastFetched, selectedPair, fetchDepth])
 
-  const totalLong  = allRows.reduce((s, r) => s + r.pendingLong,  0)
-  const totalShort = allRows.reduce((s, r) => s + r.pendingShort, 0)
+  const totalLong  = rows.reduce((s, r) => s + r.pendingLong,  0)
+  const totalShort = rows.reduce((s, r) => s + r.pendingShort, 0)
 
   return (
     <div className="rounded-xl border border-[var(--border)] overflow-hidden" style={{ background: 'var(--surface)' }}>
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)]">
-        <span className="flex items-center gap-2 text-sm font-semibold text-[var(--ink-2)]">
+      <button
+        onClick={() => {
+          const next = !open
+          setOpen(next)
+          if (next && lastFetched !== selectedPair) void fetchDepth()
+        }}
+        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors"
+      >
+        <span className="flex items-center gap-2">
           <BarChart2 size={14} className="text-[var(--accent)]" />
-          Market Depth
+          <span className="font-semibold">Market Depth — All Leverages</span>
         </span>
-        <div className="flex items-center gap-3">
-          <span className="mono text-xs text-[var(--success)]">${totalLong.toFixed(2)} L</span>
-          <span className="mono text-xs text-[var(--danger)]">${totalShort.toFixed(2)} S</span>
-          <button onClick={() => void fetchDepth()} disabled={loading}
-            className="text-xs text-[var(--accent)] hover:underline disabled:opacity-40">
-            {loading ? <Loader2 size={11} className="animate-spin" /> : 'Refresh'}
-          </button>
+        <div className="flex items-center gap-2">
+          {!open && (totalLong > 0 || totalShort > 0) && (
+            <span className="text-xs text-[var(--subtle)]">
+              <span className="text-[var(--success)]">${totalLong.toFixed(2)}L</span>
+              {' · '}
+              <span className="text-[var(--danger)]">${totalShort.toFixed(2)}S</span>
+            </span>
+          )}
+          {open ? <ChevronUp size={15} className="text-[var(--subtle)]" /> : <ChevronDown size={15} className="text-[var(--subtle)]" />}
         </div>
-      </div>
+      </button>
 
-      <div className="px-4 py-2">
-        {/* Header */}
-        <div className="grid grid-cols-3 gap-2 px-1 pb-1 border-b border-[var(--border)]">
-          <p className="text-[10px] text-[var(--subtle)] font-medium uppercase tracking-wide">Leverage</p>
-          <p className="text-[10px] text-[var(--success)] font-medium text-right uppercase tracking-wide">Long</p>
-          <p className="text-[10px] text-[var(--danger)] font-medium text-right uppercase tracking-wide">Short</p>
-        </div>
-        {allRows.map(r => (
-          <div key={r.leverage} className="grid grid-cols-3 gap-2 px-1 py-1.5 border-b border-[var(--border)]/40 hover:bg-white/[0.02] transition-colors">
-            <p className="text-xs mono font-bold text-[var(--accent)]">{r.leverage}×</p>
-            <p className={`text-xs mono text-right font-medium ${r.pendingLong > 0 ? 'text-[var(--success)]' : 'text-[var(--subtle)]'}`}>
-              {r.pendingLong > 0 ? `$${r.pendingLong.toFixed(2)}` : '—'}
-            </p>
-            <p className={`text-xs mono text-right font-medium ${r.pendingShort > 0 ? 'text-[var(--danger)]' : 'text-[var(--subtle)]'}`}>
-              {r.pendingShort > 0 ? `$${r.pendingShort.toFixed(2)}` : '—'}
-            </p>
+      {open && (
+        <div className="border-t border-[var(--border)] px-4 pb-4">
+          <div className="flex items-center justify-between pt-3 pb-2">
+            <p className="text-xs text-[var(--subtle)]">Only leverages with pending volume shown.</p>
+            <button onClick={() => void fetchDepth()} disabled={loading}
+              className="text-xs text-[var(--accent)] hover:underline disabled:opacity-40">
+              {loading ? 'Loading…' : 'Refresh'}
+            </button>
           </div>
-        ))}
-      </div>
+
+          {loading && (
+            <div className="flex items-center gap-2 py-2 text-xs text-[var(--subtle)]">
+              <Loader2 size={12} className="animate-spin shrink-0" />
+              <div className="flex-1">
+                <div className="flex justify-between mb-1">
+                  <span>Scanning leverage levels…</span>
+                  <span>{scanProgress}%</span>
+                </div>
+                <div className="h-1 rounded-full bg-[var(--border)] overflow-hidden">
+                  <div className="h-full rounded-full bg-[var(--accent)] transition-all duration-200"
+                    style={{ width: `${scanProgress}%` }} />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {!loading && rows.length === 0 && (
+            <p className="text-xs text-[var(--subtle)] py-3">No pending orders at any leverage level.</p>
+          )}
+
+          {rows.length > 0 && (
+            <>
+              <div className="grid grid-cols-2 gap-2 mb-3">
+                <div className="p-2 rounded-lg bg-[var(--success)]/5 border border-[var(--success)]/20 text-center">
+                  <p className="text-xs text-[var(--subtle)] mb-0.5">Total Long Pending</p>
+                  <p className="text-sm font-semibold mono text-[var(--success)]">${totalLong.toFixed(2)}</p>
+                </div>
+                <div className="p-2 rounded-lg bg-[var(--danger)]/5 border border-[var(--danger)]/20 text-center">
+                  <p className="text-xs text-[var(--subtle)] mb-0.5">Total Short Pending</p>
+                  <p className="text-sm font-semibold mono text-[var(--danger)]">${totalShort.toFixed(2)}</p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="grid grid-cols-3 gap-2 px-1 mb-1">
+                  <p className="text-[10px] text-[var(--subtle)] font-medium">Leverage</p>
+                  <p className="text-[10px] text-[var(--success)] font-medium text-right">Long Pending</p>
+                  <p className="text-[10px] text-[var(--danger)] font-medium text-right">Short Pending</p>
+                </div>
+                {rows.map(r => (
+                  <div key={r.leverage} className="grid grid-cols-3 gap-2 px-1 py-1 rounded-lg hover:bg-[var(--surface-muted)] transition-colors">
+                    <p className="text-xs mono font-semibold text-[var(--accent)]">{r.leverage}x</p>
+                    <p className={`text-xs mono text-right ${r.pendingLong > 0 ? 'text-[var(--success)]' : 'text-[var(--subtle)]'}`}>
+                      {r.pendingLong > 0 ? `$${r.pendingLong.toFixed(2)}` : '—'}
+                    </p>
+                    <p className={`text-xs mono text-right ${r.pendingShort > 0 ? 'text-[var(--danger)]' : 'text-[var(--subtle)]'}`}>
+                      {r.pendingShort > 0 ? `$${r.pendingShort.toFixed(2)}` : '—'}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   )
 }
