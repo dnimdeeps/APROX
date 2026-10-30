@@ -45,19 +45,24 @@ function EventRow({ ev, headBlock }: { ev: FeedEvent; headBlock: bigint }) {
   let summary = ''
   let dotColor = 'var(--subtle)'
 
+  let sub = ''  // second line detail
+
   if (ev.type === 'match') {
     dotColor = 'var(--accent)'
-    const lev   = ev.leverage ? `${ev.leverage}×` : ''
+    const lev   = ev.leverage ? `${ev.leverage}×` : '?×'
     const col   = ev.lockedCollateral ? `$${formatUsdc(ev.lockedCollateral)}` : ''
     const price = ev.price ? `@ $${formatPrice(ev.price)}` : ''
-    const long  = ev.longTrader  ? shortAddr(ev.longTrader)  : ''
-    const short = ev.shortTrader ? shortAddr(ev.shortTrader) : ''
-    const vs    = long && short ? `${long} vs ${short}` : long || short
-    summary = ['Match', lev, col, price, vs].filter(Boolean).join(' · ')
+    summary = ['Match', lev, col, price].filter(Boolean).join(' · ')
+    // Addresses on second line — fallback to order IDs if traders not resolved
+    const longStr  = ev.longTrader  ? shortAddr(ev.longTrader)  : ev.longOrderId  != null ? `#${ev.longOrderId}`  : '?'
+    const shortStr = ev.shortTrader ? shortAddr(ev.shortTrader) : ev.shortOrderId != null ? `#${ev.shortOrderId}` : '?'
+    sub = `Long ${longStr} vs Short ${shortStr}`
   } else if (ev.type === 'liquidated') {
     dotColor = 'var(--danger)'
-    const keeper = ev.keeper ? `keeper ${shortAddr(ev.keeper)}` : ''
-    summary = ['LIQUIDATED', ev.trader ? shortAddr(ev.trader) : '', keeper].filter(Boolean).join(' · ')
+    const trader = ev.trader ? shortAddr(ev.trader) : ''
+    const keeper = ev.keeper ? shortAddr(ev.keeper) : ''
+    summary = ['LIQUIDATED', trader].filter(Boolean).join(' · ')
+    if (keeper) sub = `Keeper: ${keeper}`
   } else if (ev.type === 'rematched') {
     dotColor = 'var(--bar-rematched)'
     const col = ev.newLockedCollateral ? `$${formatUsdc(ev.newLockedCollateral)}` : ''
@@ -79,11 +84,18 @@ function EventRow({ ev, headBlock }: { ev: FeedEvent; headBlock: bigint }) {
       {/* Signal dot */}
       <span className="w-1.5 h-1.5 rounded-full shrink-0"
         style={{ background: dotColor, boxShadow: isLiq ? `0 0 6px ${dotColor}` : 'none' }} />
-      {/* One-line text */}
-      <span className="mono text-[11px] flex-1 truncate"
-        style={{ color: isLiq ? 'var(--danger)' : 'var(--ink-2)' }}>
-        {summary}
-      </span>
+      {/* Text block */}
+      <div className="flex-1 min-w-0">
+        <span className="mono text-[11px] block truncate"
+          style={{ color: isLiq ? 'var(--danger)' : 'var(--ink-2)' }}>
+          {summary}
+        </span>
+        {sub && (
+          <span className="mono text-[10px] block truncate" style={{ color: 'var(--subtle)' }}>
+            {sub}
+          </span>
+        )}
+      </div>
       {/* Time */}
       <span className="mono text-[10px] shrink-0" style={{ color: 'var(--subtle)' }}>{time}</span>
     </a>

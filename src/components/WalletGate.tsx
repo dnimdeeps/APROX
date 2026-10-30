@@ -175,13 +175,6 @@ export function WalletGate({ wallet, winStreak = 0, lastTradePnl = null }: Walle
       {mode === 'idle' ? (
         /* Default: show saved username hint if present, then Register / Login */
         <div className="flex items-center gap-2">
-          {/* Returning user hint — shows username from localStorage before they click Login */}
-          {username && (
-            <span className="text-xs text-[var(--subtle)] font-medium">
-              Welcome back, <span className="text-[var(--accent)]">{username}</span>
-            </span>
-          )}
-
           <button
             onClick={() => setMode('registering')}
             disabled={isLoading}
