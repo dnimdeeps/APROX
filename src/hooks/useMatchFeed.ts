@@ -14,6 +14,7 @@ import type { Hex } from 'viem'
 const PERP_ADDRESS = (import.meta.env.VITE_APROX_PERP_ADDRESS ?? '') as Hex
 const POLL_INTERVAL_MS = 15_000
 const LOOKBACK_BLOCKS  = 5_000n
+const OPENED_LOOKBACK  = 50_000n
 const MAX_EVENTS       = 30
 
 export type FeedEventType = 'match' | 'liquidated' | 'rematched' | 'closed'
@@ -120,14 +121,15 @@ export function useMatchFeed(): { events: FeedEvent[]; loading: boolean; headBlo
       try {
         const head = await publicClient.getBlockNumber()
         if (mountedRef.current) setHeadBlock(head)
-        const fromBlock = head > LOOKBACK_BLOCKS ? head - LOOKBACK_BLOCKS : 0n
+        const fromBlock  = head > LOOKBACK_BLOCKS ? head - LOOKBACK_BLOCKS : 0n
+        const openedFrom = head > OPENED_LOOKBACK ? head - OPENED_LOOKBACK : 0n
 
         const [matchLogs, liqLogs, rematchLogs, closedLogs, openedLogs] = await Promise.all([
           publicClient.getLogs({ address: PERP_ADDRESS, event: EVENTS_ABI[0], fromBlock }),
           publicClient.getLogs({ address: PERP_ADDRESS, event: EVENTS_ABI[1], fromBlock }),
           publicClient.getLogs({ address: PERP_ADDRESS, event: EVENTS_ABI[2], fromBlock }),
           publicClient.getLogs({ address: PERP_ADDRESS, event: EVENTS_ABI[3], fromBlock }),
-          publicClient.getLogs({ address: PERP_ADDRESS, event: EVENTS_ABI[4], fromBlock }),
+          publicClient.getLogs({ address: PERP_ADDRESS, event: EVENTS_ABI[4], fromBlock: openedFrom }),
         ])
 
         // Build orderId → meta map from OrderOpened logs

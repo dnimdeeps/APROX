@@ -147,6 +147,9 @@ export function useModularWallet(): UseModularWalletReturn {
 
         const { smartAccount, bundlerClient } = await buildAccount(credential)
 
+        // Store address → username mapping so login can recover username by address
+        storage.setItem(`aprox_username_${smartAccount.address.toLowerCase()}`, usernameInput)
+
         // Register the smart account address with Circle's backend so the
         // bundler can process user operations for it. Without this, subsequent
         // sendUserOperation calls fail with "Cannot find target wallet in the
@@ -201,16 +204,21 @@ export function useModularWallet(): UseModularWalletReturn {
       // Overwriting with the login object caused "account signature check failed"
       // because the login credential can differ from the registered one.
 
-      await buildAccount(credential)
+      const { smartAccount } = await buildAccount(credential)
 
-      // Restore username: try localStorage first, then credential object (some
-      // SDK versions return username on login), then re-save so it survives next reload.
+      // Restore username — three sources in order:
+      // 1. USERNAME_STORAGE_KEY (set on register)
+      // 2. address → username mapping (survives if #1 cleared)
+      // 3. credential object (some Circle SDK versions return username on login)
+      const addrKey = `aprox_username_${smartAccount.address.toLowerCase()}`
       const savedUsername = storage.getItem(USERNAME_STORAGE_KEY)
+        ?? storage.getItem(addrKey)
         ?? (credential as { username?: string }).username
         ?? null
       if (savedUsername) {
         setUsername(savedUsername)
         storage.setItem(USERNAME_STORAGE_KEY, savedUsername)
+        storage.setItem(addrKey, savedUsername)
       }
 
       setStatus('ready')

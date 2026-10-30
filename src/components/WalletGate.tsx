@@ -102,11 +102,9 @@ export function WalletGate({ wallet, winStreak = 0, lastTradePnl = null }: Walle
           <div className="flex flex-col min-w-0">
             {/* Username + streak badge + last trade flash */}
             <div className="flex items-center gap-1.5">
-              {username && (
-                <span className="text-xs font-semibold leading-tight truncate max-w-[120px]" style={{ color: 'var(--ink)' }}>
-                  {username}
-                </span>
-              )}
+              <span className="text-xs font-semibold leading-tight truncate max-w-[120px]" style={{ color: 'var(--ink)' }}>
+                {username ?? `${address.slice(0, 6)}…${address.slice(-4)}`}
+              </span>
               {winStreak >= 3 && (
                 <span className="mono text-[9px] font-bold px-1 py-0.5 rounded shrink-0"
                   style={{ background: 'rgba(0,230,118,0.15)', color: 'var(--success)' }}>

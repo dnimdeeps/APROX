@@ -13,7 +13,6 @@ import { TradingPanel } from '@/components/TradingPanel'
 import { LiveFeed } from '@/components/LiveFeed'
 import { Leaderboard } from '@/components/Leaderboard'
 import { TraderProfile } from '@/components/TraderProfile'
-import { MarketDepth } from '@/components/MarketDepth'
 import { MyHistory } from '@/components/MyHistory'
 import { PAIR_BTC_USD, TRADING_PAIRS } from '@/hooks/useAproxContract'
 import { IS_MAINNET, NETWORK, switchNetwork } from '@/network'
@@ -283,7 +282,6 @@ export default function App() {
                 onTabChange={setActiveTab}
               />
             </div>
-            <MarketDepth defaultPair={activePairLabel as 'BTC/USD' | 'ETH/USD' | 'SOL/USD'} />
           </div>
         )}
 
