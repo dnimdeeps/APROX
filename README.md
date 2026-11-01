@@ -10,7 +10,7 @@ Built with [Arc Studio](https://studio.arc.io)
 
 APROX matches Long traders directly against Short traders at the same leverage level. Your collateral and your opponent's are locked together. As price moves, equity transfers between you in real time. Every dollar you win came from the person on the other side — there is no pool, no funding rate, no hidden counterparty.
 
-**Live app:** https://aprox.vercel.app
+**Live app:** https://aprox-2.vercel.app
 
 ---
 
